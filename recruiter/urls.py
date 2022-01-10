@@ -10,7 +10,7 @@ urlpatterns = [
 
     path('', views.RecruiterLanding, name='RecruiterLanding'),
     path('registration', stViews.StartUpsRegistration.as_view(), name='RecruiterRegistration'),
-
+    path('14_10_2000', views.app_status, name='app_status'),
     path(r'^interns/(?P<pk>\d+)/$', views.AvailableInterns, name='InternList'),
     path('shortlist/', views.ShortlistedInterns, name='shortlistedInterns'),
     path('rejected/', views.RejectedInterns, name='rejectedInterns'),

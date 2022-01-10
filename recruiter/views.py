@@ -79,6 +79,21 @@ def RejectedInterns(request,**kwargs):
     else:
         return redirect('recruiter:RecruiterLanding')
 
+
+def app_status(request,**kwargs):
+    dict=[]
+    startup_object = StartUps.objects.all()
+    for startup_temp in startup_object:
+        AllApplications = InternApplication.objects.filter(Internship__startup=startup_temp)
+        Rejected = AllApplications.filter(Status='REJECTED')
+        Shortlisted = AllApplications.filter(Status='SHORTLISTED')
+        Pending = AllApplications.filter(Status='PENDING')
+        temp = {"Startup": startup_temp.companyName, "Rejected": Rejected.count(), "Shortlisted": Shortlisted.count(), "Pending": Pending.count(), "Total": AllApplications.count()}
+        dict.append(temp)
+    print(dict)
+    template = "recruiter/app_status.html"
+    return render(request, template,{'data': dict})
+
 def add_profiles(request):
     template = "recruiter/AvailableInterns.html"
     return render(request, template)
