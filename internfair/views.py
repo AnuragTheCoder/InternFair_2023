@@ -15,11 +15,13 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 import secrets
+import requests
 import string
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 import json
+from django.contrib.auth import get_user_model
 import os
 
 # Create your views here.
@@ -71,14 +73,20 @@ class StudentRegistration(CreateView):
             data_id.append(snapshot.to_dict()["data_f"]["Id"])
 
         givenemail = str(form.cleaned_data.get('IITG_webmail'))
-        givenid = str(form.cleaned_data.get('Udgam_transaction_id'))
+
+
+        url = 'http://verysecretapir.udgamiitg.com:3000/checkifpurchased'
+        myobj = {'email': givenemail}
+        response = requests.post(url, json = myobj)
+        print(response.json())
+        has_purchased_pass = False
         roll_number = str(form.cleaned_data.get('roll_number'))
         # print(givenemail)
         iitgmail = "iitg.ac.in"
         trxn = "MOJO"
         if iitgmail.upper() in givenemail.upper() :
-            if givenid in data_id:
-                if roll_number[:2]=='20' or roll_number[:2]=='21':
+            if has_purchased_pass:
+                if roll_number[:2]=='21' or roll_number[:2]=='22':
                     user = form.save()
                     login(self.request, user)
                     return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': user.id}))
@@ -86,7 +94,7 @@ class StudentRegistration(CreateView):
                     messages.info(self.request, 'Sorry, you are not eligible for Intern Fair')
                     return redirect('StudentRegistration')
             else:
-                messages.info(self.request, 'Invalid UDGAM Pass ID')
+                messages.info(self.request, 'Please Purchase Udgam Pass')
                 return redirect('StudentRegistration')
 
         else:
@@ -135,8 +143,37 @@ def studentLogin(request):
             else:
                 return render(request, "StudentLanding.html",{'error':'Invalid login details entered. If you are a recruiter, login at recruiter page.'})
         else:
-            return render(request, "StudentLanding.html",{'error':'Invalid login details entered.'})
-            # return redirect('/', {'error':'Invalid login details given, If you are a recruiter, login at recruiter page.'})
+            url = 'http://verysecretapir.udgamiitg.com:3000/internfairauth'
+            myobj = {'outlook': username, 'password' : password}
+            response = requests.post(url, json = myobj)
+            User = get_user_model()
+            if response.json()['message'] == 'YES':
+                data = response.json()['data']
+                student = Students.objects.filter(roll_number=data['rollno']).first()
+                if student:
+                    student.user.set_password(str(password))
+                    student.user.save()
+                    login(request,student.user)
+                    return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': student.user.id}))
+                else:
+                    student_user = User.objects.create_user(username=data['outlook'],
+                                    email=data['outlook'], password=password)
+                    student_user.last_name = data['lastName']
+                    student_user.first_name = data['firstName']
+                    student_user.is_student = True
+                    student_user.save()
+                    student =Students.objects.create(user=student_user)
+                    student.name= data['firstName'] + " " + data['lastName']
+                    student.roll_number= data['rollno']
+                    student.email = data['outlook']
+                    student.department=data['department']
+                    student.contact=data['contact']
+                    student.save()
+                    login(request,student_user)
+                    return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': student_user.id}))
+            else:
+                return render(request, "StudentLanding.html",{'error':'Invalid login details entered.'})
+                # return redirect('/', {'error':'Invalid login details given, If you are a recruiter, login at recruiter page.'})
     else:
         return redirect('/student')
 
