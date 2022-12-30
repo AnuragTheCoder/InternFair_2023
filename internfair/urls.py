@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('student', views.student, name='student'),
     path('teamWebOps', views.team, name='team'),
-    path('student/register', views.StudentRegistration.as_view(), name='StudentRegistration'),
+    # path('student/register', views.StudentRegistration.as_view(), name='StudentRegistration'),
     path('student/profile', views.StudentProfile, name='StudentProfile'),
 
     # path('student/register/', views.StudentRegistration.as_view(), name='StudentRegistration'),
@@ -19,8 +19,8 @@ urlpatterns = [
     path('student/login', views.studentLogin, name='StudentLogin'),
     path('student/logout', views.logout_view, name='StudentLogout'),
     path('contact/', views.contact, name='contact'),
-    path('forgotPassword/', views.forgotPassword, name='forgotPassword'),
-    path('send-password/', views.sendPassword, name='sendPassword'),
+    # path('forgotPassword/', views.forgotPassword, name='forgotPassword'),
+    # path('send-password/', views.sendPassword, name='sendPassword'),
     path(r'^student/password/change/(?P<pk>\d+)/$', views.changePassword, name='changePassword'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

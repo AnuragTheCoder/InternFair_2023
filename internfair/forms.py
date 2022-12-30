@@ -33,11 +33,10 @@ class StudentsForm(UserCreationForm):
     IITG_webmail = forms.EmailField(max_length=150,label='IITG Webmail')
     department = forms.CharField(max_length=50)
     contact= forms.IntegerField(validators=[MaxValueValidator(9999999999)],label='Contact No.')
-    Udgam_transaction_id = forms.CharField(max_length=150,label='Udgam Pass Id')
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('name','username','IITG_webmail','roll_number','department','contact','Udgam_transaction_id','password1', 'password2',)
+        fields = ('name','username','IITG_webmail','roll_number','department','contact','password1', 'password2',)
 
     @transaction.atomic
     def save(self):
@@ -50,7 +49,6 @@ class StudentsForm(UserCreationForm):
         student.email=self.cleaned_data.get('IITG_webmail')
         student.department=self.cleaned_data.get('department')
         student.contact=self.cleaned_data.get('contact')
-        student.transactionId = self.data.get('Udgam_transaction_id')
         student.save()
         return user
 

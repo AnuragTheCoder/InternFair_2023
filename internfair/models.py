@@ -37,7 +37,6 @@ class Students(models.Model):
     name = models.CharField(max_length=50,default="")
     roll_number = models.CharField(default="",max_length=13)
     department = models.CharField(max_length=50,default="")
-    transactionId = models.CharField(max_length=150,default="")
     email = models.EmailField(max_length=150,default="")
     contact = models.CharField(default="",max_length=10)
     bio = models.CharField(default="Edit Profile to add bio",max_length=500)
