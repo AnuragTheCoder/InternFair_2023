@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{% static 'css/StudentLanding.css' %}">
 
 </head>
+
 <body>
-    <nav class="navbar navbar-edit navbar-expand-lg navbar-light bg-light" style="padding: 1vh 8vw; box-shadow: 0px 2px 8px rgba(72, 74, 82, 0.08); background-color: #FFFFFF !important">
+    <nav class="navbar navbar-edit navbar-expand-lg navbar-light bg-light"
+        style="padding: 1vh 8vw; box-shadow: 0px 2px 8px rgba(72, 74, 82, 0.08); background-color: #FFFFFF !important">
         <a class="brand" href="#" id="brand">Intern Fair</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse drop-menu" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="menu-item">
-                <a href="{% url 'index' %}" class="nav-menu" style="margin-right: 8vw;">Home</a>
-            </li>
-            <li class="menu-item">
-                <a href="/#ContactUs" target="_blank" class="nav-menu">Contact Us</a>
-            </li>
-          </ul>
-          <a href="http://udgamiitg.com/registration"><button class="RegisterBtn">Register</button></a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="menu-item">
+                    <a href="{% url 'index' %}" class="nav-menu" style="margin-right: 8vw;">Home</a>
+                </li>
+                <li class="menu-item">
+                    <a href="/#ContactUs" target="_blank" class="nav-menu">Contact Us</a>
+                </li>
+            </ul>
+            <a href="http://udgamiitg.com/registration"><button class="RegisterBtn">Register</button></a>
 
         </div>
-      </nav>
+    </nav>
 
-      <br><br><br>
-      <div class="container">
+    <br><br><br>
+    <div class="container">
         <div class="row justify-content-center align-items-center" style="margin-top:5vh">
             <div class="col-lg-5 order-lg-1 order-md-1 order-12 col-md-6 col-10 temp" style="padding-left:10vw;">
                 <span class="heading">Your first step to excel in your career</span>
                 <br><br>
-                <span class="quote">For more information <a target="_blank" href='https://rebrand.ly/IF23_Guide'>visit here</a></span>
+                <span class="quote" style="color: black; margin-top: 20px;">
+                    <ul>
+                        <li>You can login, only if you have purchased the UDGAM Pass</li>
+                        <li>You need to login with your Outlook (IITG) ID and the password you used to purchase
+                            the pass</li>
+                        <li>If you have lost the password, reset it <a
+                                href="https://www.udgamiitg.com/resetpass" target="_blank">here</a></li>
+                              <li>  For more information <a target="_blank" href='https://rebrand.ly/IF23_Guide'>visit
+                                    here</a></ul></li>
+                    </ul>
+                </span>
+            
                 <br><br><br>
                 <div class='form' style="width: 80%;">
                     <div class="row justify-content-end">
@@ -53,34 +75,39 @@
                     </div>
                     <form method='POST' action="{% url 'StudentLogin' %}">
                         {% csrf_token %}
-                        <input type="text" name='Username' placeholder="Email" class="input">
-                        <input type="password" name='Password' placeholder="Password" class="input" style="margin-bottom: 10px;">
-                        {% if error %}  
-                            <span style="color: red; margin-top: 20px;">{{error}}</span>
+                        <input type="text" name='Username' placeholder="Outlook ID" class="input">
+                        <input type="password" name='Password' placeholder="Password" class="input"
+                            style="margin-bottom: 10px;">
+                        {% if error %}
+                        <span style="color: red; margin-top: 20px;">{{error}}</span>
                         {% endif %}
-                        <span style="color: red; margin-top: 20px;">Use same credentials as on Udgam website</span>
+                        
                         <input type="submit" value="Login" class="login">
+                        
                     </form>
 
                     {% comment %} <div class="row justify-content-end" style="margin-top: 24px;">
                         <div class="col-6">
-                            <span class="recruiter"><a href="{% url 'StudentRegistration' %}">Don’t have an account?</a></span>
+                            <span class="recruiter"><a href="{% url 'StudentRegistration' %}">Don’t have an
+                                    account?</a></span>
                         </div>
                         <div class="col-6 text-right">
-                            <a class="recruiter" href="{% url 'forgotPassword' %}" title="Please Send an email with your Email id and Username. You will get new password on your mail id.">Forgot Password?</a>
+                            <a class="recruiter" href="{% url 'forgotPassword' %}"
+                                title="Please Send an email with your Email id and Username. You will get new password on your mail id.">Forgot
+                                Password?</a>
                         </div>
                     </div> {% endcomment %}
                     <br><br>
                 </div>
-                
+
 
             </div>
-            <div class="col-lg-7 order-lg-2 order-md-2 order-1 text-center col-md-6 col-12" id="intro"  >
+            <div class="col-lg-7 order-lg-2 order-md-2 order-1 text-center col-md-6 col-12" id="intro">
                 <img class="sideImg" src="{% static 'image/Signinamico1.png' %}" alt="">
             </div>
-       </div>
-      </div>
-      <br>
+        </div>
+    </div>
+    <br>
 
 </body>
 

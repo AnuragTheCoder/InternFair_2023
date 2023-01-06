@@ -143,31 +143,31 @@ def studentLogin(request):
             else:
                 return render(request, "StudentLanding.html",{'error':'Invalid login details entered. If you are a recruiter, login at recruiter page.'})
         else:
-            url = 'http://verysecretapir.udgamiitg.com:3000/internfairauth'
+            url = 'https://udgamiitg.com/backend/internfairauth'
             myobj = {'outlook': username, 'password' : password}
             response = requests.post(url, json = myobj)
             User = get_user_model()
             if response.json()['message'] == 'YES':
                 data = response.json()['data']
-                student = Students.objects.filter(roll_number=data['rollno']).first()
+                student = Students.objects.filter(roll_number=data['rollno'].strip() ).first()
                 if student:
                     student.user.set_password(str(password))
                     student.user.save()
                     login(request,student.user)
                     return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': student.user.id}))
                 else:
-                    student_user = User.objects.create_user(username=data['outlook'],
-                                    email=data['outlook'], password=password)
-                    student_user.last_name = data['lastName']
-                    student_user.first_name = data['firstName']
+                    student_user = User.objects.create_user(username=data['outlook'].strip(),
+                                    email=data['outlook'].strip(), password=password)
+                    student_user.last_name = data['lastName'].strip()
+                    student_user.first_name = data['firstName'].strip()
                     student_user.is_student = True
                     student_user.save()
                     student =Students.objects.create(user=student_user)
-                    student.name= data['firstName'] + " " + data['lastName']
-                    student.roll_number= data['rollno']
-                    student.email = data['outlook']
-                    student.department=data['department']
-                    student.contact=data['contact']
+                    student.name= data['firstName'].strip() + " " + data['lastName'].strip()
+                    student.roll_number= data['rollno'].strip()
+                    student.email = data['outlook'].strip()
+                    student.department=data['department'].strip()
+                    student.contact=data['contact'].strip()
                     student.save()
                     login(request,student_user)
                     return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': student_user.id}))
