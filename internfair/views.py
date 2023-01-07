@@ -129,8 +129,10 @@ def StudentProfile(request,**kwargs):
 def studentLogin(request):
 
     if request.method == 'POST':
-        username = request.POST.get('Username')
-        password = request.POST.get('Password')
+        username = request.POST.get('Username').strip()
+        password = request.POST.get('Password').strip()
+        if not (username and password):
+            return render(request, "StudentLanding.html",{'error':'Details are empty'})
         user = authenticate(username=username, password=password)
         if user:
             if user.is_student:
