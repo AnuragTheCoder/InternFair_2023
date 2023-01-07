@@ -75,8 +75,8 @@
                     </div>
                     <form method='POST' action="{% url 'StudentLogin' %}">
                         {% csrf_token %}
-                        <input type="text" name='Username' placeholder="Outlook ID" class="input">
-                        <input type="password" name='Password' placeholder="Password" class="input"
+                        <input type="email" name='Username' placeholder="Outlook ID" required class="input">
+                        <input type="password" name='Password' placeholder="Password" required class="input"
                             style="margin-bottom: 10px;">
                         {% if error %}
                         <span style="color: red; margin-top: 20px;">{{error}}</span>
