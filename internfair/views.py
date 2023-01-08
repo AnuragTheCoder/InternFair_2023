@@ -173,8 +173,11 @@ def studentLogin(request):
                     student.save()
                     login(request,student_user)
                     return HttpResponseRedirect(reverse('StudentProfile',kwargs={'pk': student_user.id}))
+            elif response.json()['message'] == 'PWDWRONG':
+                return render(request, "StudentLanding.html",{'error':'Outlook exists but password is incorrect'})
+
             else:
-                return render(request, "StudentLanding.html",{'error':'Invalid login details entered.'})
+                return render(request, "StudentLanding.html",{'error':'Outlook ID does not exist'})
                 # return redirect('/', {'error':'Invalid login details given, If you are a recruiter, login at recruiter page.'})
     else:
         return redirect('/student')
