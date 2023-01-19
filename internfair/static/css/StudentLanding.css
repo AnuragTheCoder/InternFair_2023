@@ -56,9 +56,9 @@ input:focus {
 }
 
 ul {
-    margin-left: auto;
+    margin-left: -39px;
     position: relative;
-    left: 22vw;
+    /* left: 22vw; */
 }
 
 .menu-item {
@@ -192,7 +192,7 @@ ul {
 @media (max-width:990px) {
 
     ul {
-        margin-left: 0 !important;
+        margin-left: -31px !important;
         left: 0;
     }
 
