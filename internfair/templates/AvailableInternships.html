@@ -60,7 +60,7 @@
 
       <div class="col-md-5 pb-3  mx-5 pb-md-0 alert alert-warning" style="font-size: 1rem">
         Please note you can only apply to a maximum of 5 Internships. Don't apply to an internship multiple times.<br>
-        Tip: Apply smartly, as there are limited vacancies for each startup.
+        <span style="color:red">Applications are closed.</span>
       </div>
     </div>
     <div class="col-12" style="padding: 30px !important;">
@@ -125,7 +125,7 @@
             </div>
             <div class="row" style="padding-top: 10px; padding-bottom:30px">
               <div class="col-12 text-center">
-                <button type="button" onclick="openQuestionModal({{intern.id}})" class="apply">Apply</button>
+                <button type="button" class="apply" style="background-color: red">Application Closed</button>
               </div>
             </div>
           </div>
@@ -264,18 +264,6 @@
     function openApplyModal(i) {
       var modal = document.getElementById("modal" + i);
       console.log(i)
-      modal.style.display = "block";
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-    }
-
-    function openQuestionModal(i) {
-      var modal = document.getElementById("modal" + i);
-      modal.style.display = "none";
-      modal = document.getElementById("qModal" + i);
       modal.style.display = "block";
       window.onclick = function (event) {
         if (event.target == modal) {

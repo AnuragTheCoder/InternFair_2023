@@ -309,7 +309,7 @@
             </div>
             <div class="row" style="padding-top: 10px; padding-bottom:30px">
                 <div class="col-12 text-center">
-                  <button type="button" onclick="openConfirmModal({{intern.id}})" class="cancel">Cancel Application</button>
+                  <button type="button" class="cancel" style="background-color: red" disabled>Cancellation Not Allowed</button>
                 </div>
             </div>
         </div>
@@ -384,18 +384,6 @@
 
   function openSummaryModal(i) {
     var modal = document.getElementById("modal" + i);
-    modal.style.display = "block";
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  }
-
-  function openConfirmModal(i) {
-    var modal = document.getElementById("modal" + i);
-    modal.style.display = "none";
-    modal = document.getElementById("cModal" + i);
     modal.style.display = "block";
     window.onclick = function (event) {
       if (event.target == modal) {
@@ -492,19 +480,6 @@ $(document).ready(function() {
       }
     }
   }
-
-  function backModal(i) {
-    var modal = document.getElementById("cModal" + i);
-    modal.style.display = "none";
-    modal = document.getElementById("modal" + i);
-    modal.style.display = "block";
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  }
-
 
 	</script>
 </html>
